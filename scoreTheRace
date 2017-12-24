@@ -1,0 +1,182 @@
+
+
+//                        HELLO!!!!! Please click the "RUN" button just above!
+
+// Example program
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool allequal(int x[], int y);
+int min(int x[], int y[]);
+
+int main()
+{
+    string places;
+    int teams[26]={0};
+    int scores[26]={0};
+    int correct = 0;
+    cout << "For this race program, please enter a string input of CAPITAL LETTERS. Each letter will represents one race participant, and the order of the letters you enter will represent what each racer placed at the end. For example, if you enter ABC, player A got first place, player B got 2nd place, and C got 3rd. ALSO, teams are allowed, but only if the number of players per team are equal. In this case, team averages will determine the winner. " << endl << endl << "If my description was too confusing, try entering ABCABC - once you observe the results, it should become clear. If you're finished entering races, simply type done (in lowercase letters)." << endl << endl;
+    cin >> places;
+    while (places != "done")
+    {
+        for (int i=0;i<26;i++)
+        {   teams[i]=0; //reset these to zero due to invalid input - see below
+            scores[i]=0; //reset these to zero due to invalid input - see below
+        }
+
+
+        for (int i=0;i<=places.size();i++)
+        {
+            switch (places[i])
+            {
+                case 'A':teams[0]++; scores[0]+=(i+1);
+                break;
+
+                case 'B':teams[1]++; scores[1]+=(i+1);
+                break;
+
+                case 'C':teams[2]++; scores[2]+=(i+1);
+                break;
+
+                case 'D':teams[3]++; scores[3]+=(i+1);
+                break;
+
+                case 'E':teams[4]++; scores[4]+=(i+1);
+                break;
+
+                case 'F':teams[5]++; scores[5]+=(i+1);
+                break;
+
+                case 'G':teams[6]++; scores[6]+=(i+1);
+                break;
+
+                case 'H':teams[7]++; scores[7]+=(i+1);
+                break;
+
+                case 'I':teams[8]++; scores[8]+=(i+1);
+                break;
+
+                case 'J':teams[9]++; scores[9]+=(i+1);
+                break;
+
+                case 'K':teams[10]++; scores[10]+=(i+1);
+                break;
+
+                case 'L':teams[11]++; scores[11]+=(i+1);
+                break;
+
+                case 'M':teams[12]++; scores[12]+=(i+1);
+                break;
+
+                case 'N':teams[13]++; scores[13]+=(i+1);
+                break;
+
+                case 'O':teams[14]++; scores[14]+=(i+1);
+                break;
+
+                case 'P':teams[15]++; scores[15]+=(i+1);
+                break;
+
+                case 'Q':teams[16]++; scores[16]+=(i+1);
+                break;
+
+                case 'R':teams[17]++; scores[17]+=(i+1);
+                break;
+
+                case 'S':teams[18]++; scores[18]+=(i+1);
+                break;
+
+                case 'T':teams[19]++; scores[19]+=(i+1);
+                break;
+
+                case 'U':teams[20]++; scores[20]+=(i+1);
+                break;
+
+                case 'V':teams[21]++; scores[21]+=(i+1);
+                break;
+
+                case 'W':teams[22]++; scores[22]+=(i+1);
+                break;
+
+                case 'X':teams[23]++; scores[23]+=(i+1);
+                break;
+
+                case 'Y':teams[24]++; scores[24]+=(i+1);
+                break;
+
+                case 'Z':teams[25]++; scores[25]+=(i+1);
+                break;
+
+                default:
+                break;
+            }
+        }
+
+        for (int i=0;i<places.size();i++)
+        {
+            if (islower(places[i]))
+            {   cout << "Invalid string. Please use uppercase letters." << endl;
+                cin >> places;
+                correct = 1;
+                break;
+            }
+
+            if (allequal(teams, 26))
+            {   cout << "Invalid string. Please give teams the same number of players." << endl;
+                cin >> places;
+                correct = 1;
+                break;
+            }
+        }
+
+        if (correct>=1)
+        {   correct=0;
+            continue;
+        }
+
+        cout << "TEAM     PLAYERS     SCORE" << endl;
+        for (int i=0;i<26;i++)
+        {   if (teams[i]!=0) cout << (char)(i+65) << "        "<< teams[i] << "           " << (double)scores[i]/(double)teams[i]<<endl;
+        }
+        cout << "The winner is Team " << (char)((min(scores, teams))+65) << endl;
+        cout << "Please enter next race" << endl;
+        cin >> places;
+    }
+
+    return 0;
+}
+
+bool allequal(int x[], int y)
+{   int m;
+    for (int i=0;i<y;i++)
+    {   if (x[i]==0) continue;
+        m=x[i];
+        break;
+    }
+
+    for (int i=0;i<y;i++)
+    {   if (x[i]!=m && x[i]!=0) return true;
+    }
+    return false;
+}
+
+int min(int x[], int y[])
+{   double min;
+    int okay=0;
+
+    for (int i=0;i<26;i++)
+    {   if (x[i]!=0 && okay==0)
+        {   min = ((double)x[i]/y[i]);;
+            okay=1;
+            continue;
+        }
+
+        if (min > ((double)x[i]/y[i]))
+                min = (double)x[i]/y[i];
+    }
+
+    for (int i=0;i<26;i++)
+    {   if (((double)x[i]/y[i])==min) return i;
+    }
+}

@@ -6,3 +6,6 @@ Input the outcomes of a race by using capital letters, then the program will cru
 // per team are equal. In this case, team averages will determine the winner. " << endl << endl << "If my description was too 
 // confusing, try entering ABCABC - once you observe the results, it should become clear. If you're finished entering races, 
 // simply type done (in lowercase letters).
+
+// This was a project given to me in one of my C++ classes. It demonstrates the different ways to get input, store it, then use it to
+// gain some insight (and then spit back out said insight of course).
